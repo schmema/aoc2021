@@ -55,16 +55,16 @@ for run in runlist:
         for p in poplist:
             inputlist.pop(p)
         poplist = []
-        print(inputlist)
+        #print(inputlist)
         if len(inputlist) >1:
             grate,erate = run_bitcounter(inputlist)
             if run == "oxi":
-                print(grate[i])
+                #print(grate[i])
                 for j in range(len(inputlist)):
                     if int(inputlist[j][i]) != int(grate[i]):
                         poplist.append(j)
             if run == "co2":
-                print(erate[i])
+                #print(erate[i])
                 for j in range(len(inputlist)):
                     if int(inputlist[j][i]) != int(erate[i]):
                         poplist.append(j)
