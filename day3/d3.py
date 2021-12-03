@@ -39,9 +39,9 @@ print(grate + ' ' + str(int(grate,2))+"\n"\
     +str(int(erate,2)*int(grate,2)))
 
 #p2
-runlist = ["oxi","co2"]
+runlist = ["oxirate","corate"]
 
-lsr = {'oxirate':0,'corate':0}
+lsr = {runlist[0]:0,runlist[1]:0}
 
 for run in runlist:
     print("\n")
@@ -53,12 +53,11 @@ for run in runlist:
     for i in range(12):
         if len(inputlist) >1:
             grate,erate = run_bitcounter(inputlist)
-            if run == "oxi":
-
+            if run == "oxirate":
                 for j in range(len(inputlist)):
                     if int(inputlist[j][i]) != int(grate[i]):
                         poplist.append(j)
-            if run == "co2":
+            if run == "corate":
                 for j in range(len(inputlist)):
                     if int(inputlist[j][i]) != int(erate[i]):
                         poplist.append(j)
@@ -66,11 +65,8 @@ for run in runlist:
             for p in poplist:
                 inputlist.pop(p)
             poplist = []
-    if run == "oxi":
-        lsr['oxirate'] = str(inputlist[0]).rstrip()
-    elif run == "co2":
-        lsr['corate'] = str(inputlist[0]).rstrip()
-        
+    lsr[run] = str(inputlist[0]).rstrip()
+    
     
 print (str(lsr) + "\n" \
     + str(int(str(lsr['oxirate']),2))+" "+str(int(str(lsr['corate']),2))+ "\n"\
