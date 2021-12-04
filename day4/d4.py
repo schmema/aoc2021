@@ -28,28 +28,30 @@ def winchecker(winchart,bingochart):
                 if sum(winchart[y])== 5:
                     return(True, bingochart, winchart)
     return False,[], []
+
 win = False
+
+donecharts = []
 for number in numberlist:
     for chart in range(len(bingocharts)):
-        for y in range(5):
-            for x in range(5):
-                if int(number) == int(bingocharts[chart][y][x]):
-                    winlist[chart][y][x] = 1
-                    win,winningchart, checklist = winchecker(winlist[chart],bingocharts[chart])
-                    if win:
-                        print("BINGO!")
-                        print(*checklist,sep='\n')
-                        print(*winningchart,sep='\n')
-                        winsum = 0
-                        for i in range(len(winningchart)):
-                            for x in range(5):
-                                if checklist[i][x] == 0:
-                                    winsum = winsum + int(winningchart[i][x])
-                        print(str(winsum)+ " * "+number+ " = "+str(winsum*int(number)))
-                        break
-            if win:
-                break
-        if win:
+        if (len(donecharts) == 100):
             break
-    if win:
-        break
+        if chart not in donecharts:
+            for y in range(5):
+                for x in range(5):
+                    if int(number) == int(bingocharts[chart][y][x]):
+                        winlist[chart][y][x] = 1
+                        win,winningchart, checklist = winchecker(winlist[chart],bingocharts[chart])
+                        if win:
+                            win = False
+                            if (len(donecharts) == 0) or (len(donecharts)==99):
+                                print(str(len(donecharts)+1)+". BINGO!")
+                                print(*checklist,sep='\n')
+                                print(*winningchart,sep='\n')
+                                winsum = 0
+                                for i in range(len(winningchart)):
+                                    for x in range(5):
+                                        if checklist[i][x] == 0:
+                                            winsum = winsum + int(winningchart[i][x])
+                                print(str(winsum)+ " * "+number+ " = "+str(winsum*int(number)))
+                            donecharts.append(chart)
