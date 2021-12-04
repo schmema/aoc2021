@@ -44,8 +44,9 @@ for number in numberlist:
                         win,winningchart, checklist = winchecker(winlist[chart],bingocharts[chart])
                         if win:
                             win = False
-                            if (len(donecharts) == 0) or (len(donecharts)==99):
-                                print(str(len(donecharts)+1)+". BINGO!")
+                            donecharts.append(chart)
+                            if (len(donecharts) == 1) or (len(donecharts)==100):
+                                print(str(len(donecharts))+". BINGO!")
                                 print(*checklist,sep='\n')
                                 print(*winningchart,sep='\n')
                                 winsum = 0
@@ -53,5 +54,5 @@ for number in numberlist:
                                     for x in range(5):
                                         if checklist[i][x] == 0:
                                             winsum = winsum + int(winningchart[i][x])
-                                print(str(winsum)+ " * "+number+ " = "+str(winsum*int(number)))
-                            donecharts.append(chart)
+                                print(str(winsum)+ " * "+number+ " = "+str(winsum*int(number))+"\n")
+                            
